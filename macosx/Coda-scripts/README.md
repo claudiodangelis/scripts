@@ -7,7 +7,8 @@ __~/Library/Scripts/Applications/Coda__
 (or alternatively "**Open enclosing folder**" from the Coda's Script menu)
 
 
-For others, read this: http://www.panic.com/coda/developer/howto/applescript.php
+Others should read this first: http://www.panic.com/coda/developer/howto/applescript.php
+
 
 Feel free to fork and contribute and remember, these scripts are not supposed to be solid and fully working, so please consider:
 
