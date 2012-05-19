@@ -1,22 +1,5 @@
-
-
-
-(*
-$dbh = mysqli_connect($hostname,$username,$password,$dbname) or 
-  die("Problem connecting: ".mysqli_error());
-//run a query, returning a result set
-$result = mysqli_query($dbh,"SELECT field1,field2 FROM tablename");
-// loop through the result set and display the results
-while ($row = mysqli_fetch_assoc($result)){
-  echo $row['field1'].$row['field2]."\n";
-
-//free the memory and close the connection
-mysqli_free_result($result);
-mysqli_close($dbh);
-*)
-
 on CodaScriptSettings()
-	return {displayName:"GET/POST/SESSION Variables", inContextMenu:"yes"}
+	return {displayName:"Interactive mysqli connect", inContextMenu:"yes"}
 end CodaScriptSettings
 
 set generateOutput to ""
