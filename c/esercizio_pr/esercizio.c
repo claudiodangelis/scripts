@@ -17,8 +17,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int nextIntChar,currentIntChar,freq[122],seq[122],i,allChar;
-double relFreq,percFreq;
+int nextIntChar,currentIntChar,freq[256],seq[256],i;
+double relFreq,percFreq,allChar;
 char nextChar,currentChar;
 void printFreq();
 
@@ -27,36 +27,33 @@ int main(){
 	FILE* file;
 	file=fopen("testo","r");
 	while(!feof(file)){
-		fread(&nextChar,sizeof(nextChar),1,file);
-		nextIntChar=nextChar;
-		freq[nextIntChar]++;
-		allChar++;
-		printf("%d %c\n",nextIntChar,nextChar);
+		
+		if(fread(&nextChar,sizeof(nextChar),1,file)){
+			allChar++;
+			
+			nextIntChar=nextChar;
+			freq[nextIntChar]++;
+		}
+		else{
+			break;
+			}
 	}
-
 	fclose(file);
-	printf("%d\n",allChar);
 	printFreq();
 	return 1;
 }
 
 void printFreq(){
 	printf("### Frequences ###\n");
-	for ( i = 48; i < 58; i++ ) {
+	for ( i = 48; i < 123; i++ ) {
 		if(freq[i]!=0){
-			printf("%c = %d\n",i,freq[i]);
+			relFreq=freq[i]/allChar;
+			percFreq=(freq[i]*100)/allChar;
+			printf("%c\n",i);
+			printf("Absolute freq: %d\n",freq[i]);
+			printf("Relative freq: %.2f\n",relFreq);
+			printf("Percentage freq: %.2f %%\n\n",percFreq);
 		}
 	}
 
-	for ( i = 65; i < 91; i++ ) {
-		if(freq[i]!=0){
-			printf("%c = %d\n",i,freq[i]);
-		}
-	}
-
-	for ( i = 97; i < 123; i++ ) {
-		if(freq[i]!=0){
-			printf("%c = %d\n",i,freq[i]);
-		}
-	}
 }
