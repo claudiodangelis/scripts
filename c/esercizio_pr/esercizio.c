@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int nextIntChar,currentIntChar,freq[256],seq[256],next[256],i,searchSeq;
+int nextIntChar,currentIntChar,freq[123],seq[123],next[123],i,searchSeq;
 double relFreq,percFreq,allChar;
 char nextChar,currentChar;
 
