@@ -12,7 +12,6 @@
 // 
 // 
 // fornire le frequente assolute e relative e percentuali.
-
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -20,9 +19,6 @@ int nextIntChar,currentIntChar,freq[123],seq[123],next[123],i,searchSeq;
 double relFreq,percFreq,allChar;
 char nextChar,currentChar;
 
-void printFreq();
-void printSeq();
-void printNext();
 
 int main(){
 	printf("Contenuto del file:\n");
@@ -56,14 +52,12 @@ int main(){
 				}
 			}
 			
-			
 			currentChar=nextChar;
 			allChar++;
 			
-		}
+			}
 		
 		else{
-
 			break;
 			}
 	}
@@ -71,47 +65,19 @@ int main(){
 	if(searchSeq==1){seq[currentIntChar]++;}
 	
 	fclose(file);
-	printf("\n\n");
-	printFreq();
-	printSeq();
-	printNext();
-	return 1;
-}
-
-void printFreq(){
-	printf("### Frequenze: ###\n");
+	printf("\n");
+	//Stampa
 	for ( i = 48; i < 123; i++ ) {
 		if(freq[i]!=0){
 			relFreq=freq[i]/allChar;
 			percFreq=(freq[i]*100)/allChar;
 			printf("%c\n",i);
-			printf("Assoluta: %d\n",freq[i]);
-			printf("Relativa: %.2f\n",relFreq);
-			printf("Percentuale: %.2f %%\n\n",percFreq);
+			printf("Freq. Assoluta: %d\n",freq[i]);
+			printf("Freq. Relativa: %.2f\n",relFreq);
+			printf("Freq. Percentuale: %.2f %%\n",percFreq);
+			printf("Sequenza/e %d\n",seq[i]);
+			printf("Prossimo: %d\n\n",next[i]);
 		}
 	}
-
-}
-
-void printSeq(){
-	printf("### Sequenze ###\n");
-	for(i=48;i<123;i++){
-		if(seq[i]!=0){
-			
-			printf("%c ha %d sequenza/e \n",i,seq[i]);
-			
-		}
-	}
-	printf("\n");
-}
-
-void printNext(){
-	printf("### Prossimo ###\n");
-	for(i=48;i<123;i++){
-		if(next[i]!=0){
-			
-			printf("%c ha %d volta/e un prossimo\n",i,next[i]);
-			
-		}
-	}
+	return 1;
 }
