@@ -4,6 +4,7 @@ function leggiSnippets(jsonFile){
 		convertiPerGeany(jsonData);
 	});
 }
+
 function convertiPerSublimeText2(jsonData){
 
 	for(i=0;i<jsonData.snippets.length;i++){
@@ -35,59 +36,75 @@ function convertiPerSublimeText2(jsonData){
 
 function convertiPerGeany(jsonData){
 
-	var tmpSnippetJsonObj	= {};
-	var snippetJsonObj 		= {};
+	var snippetJsonObj	= {};
+	var snippetJsonObj 	= {};
 
-	tmpSnippetJsonObj.cat 	= [];
-	snippetJsonObj.cat 		= [];
+	snippetJsonObj.cat 	= [];
+	snippetJsonObj.cat 	= [];
 	
-	for(i=0;i<jsonData.snippets.length;i++){
-		snip=jsonData.snippets[i];
-		tmpSnippetJsonObj.cat.push({'id':snip.cat});
-	}
+	var visto = [];	// metodo piuttosto rozzo ma assolutamente funzionale
 
-	for(i=0;i<tmpSnippetJsonObj.cat.length;i++){
-		
-		if($.inArray(snip.cat,snippetJsonObj.cat.id) == -1){
-			console.log(tmpSnippetJsonObj.cat[i].id +' non presente');
+	for(i=0;i<jsonData.snippets.length;i++){
+
+		snip=jsonData.snippets[i];
+
+		if($.inArray(snip.cat,visto)==-1){
 			snippetJsonObj.cat.push({'id':snip.cat});
-		}else{
-			console.log(snippetJsonObj.cat[i]+' presente');
 		}
 
+		visto.push(snip.cat);
 	}
-	//tmpSnippetJsonObj.cat.push({'snippet':'sn'});
 
+	for(i=0;i<snippetJsonObj.cat.length;i++){
+		snippetJsonObj.cat[i].snippet=[];
 
+	for(j=0;j<jsonData.snippets.length;j++){
+		if(snippetJsonObj.cat[i].id==jsonData.snippets[j].cat){
 
-	var archetipo = 
-	{'cat':[
-			{'id':'Python',
-			'snippet':[
-				{
-					'nome':'primo snippet',
-					'codice':'codice primo sni'
-				},
-				
-				{
-					'nome':'secondo',
-					'codice':'codice secondo'
-				}
-			]},
+			var singoloSnippetObj = {};
 			
-			{'id':'JS'},
-			
-			{'id':'php'},]
-		};
+			singoloSnippetObj.name=jsonData.snippets[j].name;
+			singoloSnippetObj.data=jsonData.snippets[j].data;
+			singoloSnippetObj.tab=jsonData.snippets[j].tab;
 
+			snippetJsonObj.cat[i].snippet.push(singoloSnippetObj);
+		}
+	}
+
+	}
+
+	stampaSnippet('~/.config/geany/snippets.conf',snippetJsonObj,'geany');
 }
 
 function stampaSnippet(nomeFileSnippet,snippet,textEditor){
 
+	if(textEditor=='geany'){
+
+	 	tmpSnippet='';
+	 	for(i=0;i<snippet.cat.length;i++){
+	 		if(snippet.cat[i].id==''){
+	 			tmpSnippet+='[Default]\n';
+	 		}else{
+	 			tmpSnippet+='['+snippet.cat[i].id+']\n';
+	 		}
+
+	 		for(j=0;j<snippet.cat[i].snippet.length;j++){
+	 			if(snippet.cat[i].snippet[j].tab!=''){	// il formato delle snippets di geany richiede un tab trigger
+	 				tmpSnippet+=snippet.cat[i].snippet[j].tab+'='+snippet.cat[i].snippet[j].data.replace(/\n/g,'\\n')+'\n';
+	 			}
+	 		}
+
+	 		tmpSnippet+='\n';
+	 	}
+
+		snippet = tmpSnippet;
+	}
+
+
 	var divSnippet		= document.createElement('div');
 	var preSnippet		= document.createElement('pre');
 	var pTitoloSnippet	= document.createElement('p');
-	var titoloSnippet 	= document.createTextNode(nomeFileSnippet+' | '+textEditor);
+	var titoloSnippet 	= document.createTextNode(textEditor +' # '+nomeFileSnippet);
 	var corpoSnippet	= document.createTextNode(snippet);
 
 	divSnippet.appendChild(pTitoloSnippet);
@@ -97,4 +114,3 @@ function stampaSnippet(nomeFileSnippet,snippet,textEditor){
 	
 	document.body.appendChild(divSnippet);
 }
-

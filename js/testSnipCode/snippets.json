@@ -20,9 +20,9 @@
 		},
 
 		{
-			"name":"quarto snippet, quello senza tab",
+			"name":"quarto snippet ed ultimo snippet",
 			"data":"<parent>\n\t<lol>\n\t\t<asd>cmd1</asd>\n\t\t<asd>cmd2</asd>\n\t</lol>\n</parent>",
-			"tab":"",
+			"tab":"lol",
 			"cat":"Javascript"
 		}
 	]
