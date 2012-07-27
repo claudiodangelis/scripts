@@ -1,0 +1,29 @@
+{
+	"snippets":[
+		{
+			"name":"primo snippet",
+			"data":"codice primo sn",
+			"tab":"primo",
+			"cat":""
+		},
+		{
+			"name":"secondo snippet",
+			"data":"codice secondo",
+			"tab":"secondo",
+			"cat":"Python"
+		},
+		{
+			"name":"terzo snippet",
+			"data":"codice terzo",
+			"tab":"terzo",
+			"cat":"Javascript"
+		},
+
+		{
+			"name":"quarto snippet, quello senza tab",
+			"data":"<parent>\n\t<lol>\n\t\t<asd>cmd1</asd>\n\t\t<asd>cmd2</asd>\n\t</lol>\n</parent>",
+			"tab":"",
+			"cat":"Javascript"
+		}
+	]
+}
