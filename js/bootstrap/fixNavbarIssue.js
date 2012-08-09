@@ -2,8 +2,6 @@ function fixNavbarIssue(){
 
 /*  Quick & dirt draft fix for the bootstrap's navbar-fixed-top issue.
 
-WORKS FINE ONLY ON CHROME
-
 Overview
   When you call a given section of a document (e.g. via <a href="#section"> or domain.com/page#section1) browsers show that section at the top of window. Bootstrap's navbar-fixed-top, _since it's fixed_, *overlays* first lines of content.
   This function catches all of the <a> tags pointing to a section of the page and rewrites them to properly display content.
