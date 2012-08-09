@@ -13,6 +13,7 @@ Usage
   Paste this function wherever you want in your document and append _fixNavbarIssue()_ to your <body>'s onload attribute.
 
 Bugs:
+
   www.claudiodangelis.it
   claudiodangelis@gmail.com
 
@@ -29,7 +30,7 @@ Bugs:
     }
 
     // This adds any <a> element 
-    var locationHref = $(window.location).attr('origin')+$(window.location).attr('pathname');
+    var locationHref = window.location.protocol + '//' + window.location.host + $(window.location).attr('pathname');
     var anchorsList = $('a').get();
 
     for(i=0;i<anchorsList.length;i++){
